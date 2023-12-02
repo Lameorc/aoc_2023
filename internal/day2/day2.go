@@ -2,12 +2,11 @@ package day2
 
 import (
 	"fmt"
-	"log"
 	"regexp"
-	"strconv"
 	"strings"
 
 	"github.com/lameorc/aoc_2023/internal/solution"
+	"github.com/lameorc/aoc_2023/internal/utils"
 )
 
 type Day2 struct{}
@@ -59,23 +58,6 @@ func (g *game) GetFewestCubes() record {
 	return lowerBound
 }
 
-func atoiOrFail(s, opIdent string) int {
-	out, err := strconv.Atoi(s)
-	if err != nil {
-		log.Fatalf("failed to parse %s from %s", opIdent, s)
-	}
-	return out
-
-}
-
-func reMatchOrZero(s string, r *regexp.Regexp, ident string) int {
-	matches := r.FindStringSubmatch(s)
-	if matches == nil {
-		return 0
-	}
-	return atoiOrFail(matches[1], ident)
-}
-
 func parseGames(input []string) []game {
 	games := make([]game, 0, len(input))
 	for _, line := range input {
@@ -83,14 +65,14 @@ func parseGames(input []string) []game {
 			continue
 		}
 		byColon := strings.Split(line, ":")
-		gameId := atoiOrFail(strings.Split(byColon[0], " ")[1], "gameId")
+		gameId := utils.AtoiOrFail(strings.Split(byColon[0], " ")[1], "gameId")
 		rawRecords := strings.Split(byColon[1], ";")
 		g := game{Id: gameId, Records: make([]record, 0, len(rawRecords))}
 
 		for _, r := range rawRecords {
-			reds := reMatchOrZero(r, redRe, "reds")
-			greens := reMatchOrZero(r, greenRe, "greens")
-			blues := reMatchOrZero(r, blueRe, "blues")
+			reds := utils.ReMatchOrZero(r, redRe, "reds")
+			greens := utils.ReMatchOrZero(r, greenRe, "greens")
+			blues := utils.ReMatchOrZero(r, blueRe, "blues")
 
 			rec := record{
 				Red:   reds,

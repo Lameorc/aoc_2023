@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/lameorc/aoc_2023/internal/solution"
+	"github.com/lameorc/aoc_2023/internal/utils"
 )
 
 type Day1 struct{}
@@ -101,10 +102,7 @@ func (*Day1) Part2(input []string) string {
 		first := matches[0]
 		last := matches[len(matches)-1]
 		lineVal := fmt.Sprintf("%d%d", numFromString(first), numFromString(last))
-		interim, err := strconv.Atoi(lineVal)
-		if err != nil {
-			panic(fmt.Sprintf("failed to parser lineval=%s", lineVal))
-		}
+		interim := utils.AtoiOrFail(lineVal, "lineval")
 		result += interim
 
 	}
