@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/lameorc/aoc_2023/internal/day1"
+	"github.com/lameorc/aoc_2023/internal/day2"
 	"github.com/lameorc/aoc_2023/internal/solution"
 )
 
@@ -37,6 +38,8 @@ func main() {
 	switch *dayPtr {
 	case 1:
 		s = &day1.Day1{}
+	case 2:
+		s = &day2.Day2{}
 	default:
 		log.Fatalf("unknown day %d", *dayPtr)
 	}
