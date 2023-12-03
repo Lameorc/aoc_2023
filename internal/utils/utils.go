@@ -22,3 +22,8 @@ func ReMatchOrZero(s string, r *regexp.Regexp, ident string) int {
 	}
 	return AtoiOrFail(matches[1], ident)
 }
+
+func IsNum(s string) bool {
+	_, err := strconv.Atoi(s)
+	return err == nil
+}
