@@ -164,14 +164,6 @@ func (a *almanac) lowestLocationForPart2() int {
 
 }
 
-func seedsAsRange(start, size int) []int {
-	newS := make([]int, 0, size)
-	for i := 0; i < size; i++ {
-		newS = append(newS, start+i)
-	}
-	return newS
-}
-
 // Part1 implements solution.Solution.
 func (*Day) Part1(input []string) string {
 	a := newAlmanac(input)
