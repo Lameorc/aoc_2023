@@ -4,9 +4,11 @@ import (
 	"log"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 func AtoiOrFail(s, opIdent string) int {
+	s = strings.Trim(s, " ")
 	out, err := strconv.Atoi(s)
 	if err != nil {
 		log.Fatalf("failed to parse %s from %s", opIdent, s)
