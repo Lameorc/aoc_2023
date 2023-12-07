@@ -14,6 +14,7 @@ import (
 	"github.com/lameorc/aoc_2023/internal/day4"
 	"github.com/lameorc/aoc_2023/internal/day5"
 	"github.com/lameorc/aoc_2023/internal/day6"
+	"github.com/lameorc/aoc_2023/internal/day7"
 	"github.com/lameorc/aoc_2023/internal/solution"
 )
 
@@ -52,6 +53,8 @@ func main() {
 		s = &day5.Day{}
 	case 6:
 		s = &day6.Day{}
+	case 7:
+		s = &day7.Day{}
 	default:
 		log.Fatalf("unknown day %d", *dayPtr)
 	}
