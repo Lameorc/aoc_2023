@@ -120,7 +120,7 @@ func (h history) extrapolatePrev() int {
 
 	numDiffs := len(diffs)
 	// prepend leading zero to last diff
-	diffs[numDiffs-1] = prepend[int](diffs[numDiffs-1], 0)
+	diffs[numDiffs-1] = prepend(diffs[numDiffs-1], 0)
 
 	// fill the rest
 	// fill in the rest
@@ -130,7 +130,7 @@ func (h history) extrapolatePrev() int {
 		rightVal := currentLine[0]
 		bottomVal := diffs[diffIdx+1][0]
 
-		diffs[diffIdx] = prepend[int](diffs[diffIdx], rightVal-bottomVal)
+		diffs[diffIdx] = prepend(diffs[diffIdx], rightVal-bottomVal)
 	}
 
 	return diffs[0][0]
