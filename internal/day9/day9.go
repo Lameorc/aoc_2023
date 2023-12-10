@@ -111,16 +111,12 @@ func (h history) predict() int {
 	return diffs[0][len(diffs[0])-1]
 }
 
-func prepend[elemTyp any](s []elemTyp, val elemTyp) []elemTyp {
-	return append([]elemTyp{val}, s...)
-}
-
 func (h history) extrapolatePrev() int {
 	diffs := h.asHistoriesWithDiffs()
 
 	numDiffs := len(diffs)
 	// prepend leading zero to last diff
-	diffs[numDiffs-1] = prepend(diffs[numDiffs-1], 0)
+	diffs[numDiffs-1] = utils.Prepend(diffs[numDiffs-1], 0)
 
 	// fill the rest
 	// fill in the rest
@@ -130,7 +126,7 @@ func (h history) extrapolatePrev() int {
 		rightVal := currentLine[0]
 		bottomVal := diffs[diffIdx+1][0]
 
-		diffs[diffIdx] = prepend(diffs[diffIdx], rightVal-bottomVal)
+		diffs[diffIdx] = utils.Prepend(diffs[diffIdx], rightVal-bottomVal)
 	}
 
 	return diffs[0][0]
